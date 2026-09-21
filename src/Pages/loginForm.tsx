@@ -11,6 +11,7 @@ import {
     Typography} from '@mui/material';
 import {Visibility, VisibilityOff} from '@mui/icons-material';
 import { useState } from 'react';
+import SocialLoginButton from '../Component/SocialAuth';
 
 function loginForm(){
 
@@ -77,6 +78,11 @@ function loginForm(){
                 <Divider sx={{ my: 3, fontSize: '1rem'  }}>
                 or continue with
                 </Divider>
+                <Stack direction="row" spacing={2} sx={{ justifyContent: 'center' }}>
+                    <SocialLoginButton provider="google" />
+                    <SocialLoginButton provider="apple" />
+                    <SocialLoginButton provider="facebook" />
+                </Stack>
 
             </Box>
         </Stack>
