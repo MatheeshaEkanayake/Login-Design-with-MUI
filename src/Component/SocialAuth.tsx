@@ -2,6 +2,8 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 import AppleIcon from '@mui/icons-material/Apple';
 import GoogleIcon from '@mui/icons-material/Google';
 import { IconButton } from '@mui/material';
+import { signInWithPopup } from 'firebase/auth';
+import { auth, googleProvider, appleProvider } from '../Config/firebase';
 
 type Provider = 'google' | 'apple' | 'facebook';
 
@@ -11,22 +13,32 @@ function getProviderConfig(provider: Provider) {
         case 'google':
             return {
                 icon: <GoogleIcon />,
-                onClick: () => {
-                    // handle Google auth
+                onClick: async () => {
+                    try {
+                        const result = await signInWithPopup(auth, googleProvider);
+                        console.log('Logged in as', result.user.displayName);
+                    } catch (error) {
+                        console.log('Google login failed', error);
+                    }
                 },
             };
         case 'apple':
             return {
                 icon: <AppleIcon />,
-                onClick: () => {
-                    // handle Apple auth
+                onClick: async () => {
+                    try {
+                        const result = await signInWithPopup(auth, appleProvider);
+                        console.log('Logged in as', result.user.displayName);
+                    } catch (error) {
+                        console.log('Apple login failed', error);
+                    }
                 },
             };
         case 'facebook':
             return {
                 icon: <FacebookIcon />,
-                onClick: () => {
-                    // handle Facebook auth
+                onClick: async () => {
+
                 },
             };
     }
